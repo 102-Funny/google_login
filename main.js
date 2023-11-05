@@ -30,3 +30,23 @@ googleLogin.addEventListener('click', function(){
         const errorMessage = error.message;
     });
 })
+
+function updateUserProfile(user){
+    const username = user.displayName;
+    const useremail = user.email;
+    const userProfilePicture = user.photoURL;
+
+    document.getElementById("username").textContent = username;
+    document.getElementById("useremail").textContent = useremail;
+    document.getElementById("profilepicture").src = userProfilePicture;
+}
+
+onAuthStateChanged(auth, (user) => {
+    if(user){
+        updateUserProfile(user);
+        const uid = user.uid;
+        return uid;
+    }else{
+        alert("create account and login")
+    }
+})
