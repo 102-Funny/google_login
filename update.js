@@ -1,6 +1,7 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 import {getAuth,GoogleAuthProvider,signInWithPopup} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyAD5enlnyxoQ3j6aAuSN857Ohj75FwXF7c",
     authDomain: "membership-system-4f4f8.firebaseapp.com",
@@ -14,19 +15,25 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-auth.languageCode = 'zh_tw'
-const provider = new GoogleAuthProvider();
 
-const googleLogin = document.getElementById("google-login-btn");
-googleLogin.addEventListener('click', function(){
-    signInWithPopup(auth, provider)
-    .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const user = result.user;
-        console.log(user);
-        window.location.href = "logged.html";
-    }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-    });
+const user = auth.currentUser;
+
+function updateUserProfile(user){
+    const username = user.displayName;
+    const useremail = user.email;
+    const userProfilePicture = user.photoURL;
+
+    document.getElementById("username").textContent = username;
+    document.getElementById("useremail").textContent = useremail;
+    document.getElementById("profilepicture").src = userProfilePicture;
+}
+
+onAuthStateChanged(auth, (user) => {
+    if(user){
+        updateUserProfile(user);
+        const uid = user.uid;
+        return uid;
+    }else{
+        alert("create account and login")
+    }
 })
