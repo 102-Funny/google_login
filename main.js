@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-import {getAuth,googleAuthProvider,signInWithPopup} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"
+import {getAuth,GoogleAuthProvider,signInWithPopup} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyAD5enlnyxoQ3j6aAuSN857Ohj75FwXF7c",
@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 auth.languageCode = 'zh_tw'
-const provider = new googleAuthProvider();
+const provider = new GoogleAuthProvider();
 
 const googleLogin = document.getElementById("google-login-btn");
 googleLogin.addEventListener('click', function(){
