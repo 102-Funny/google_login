@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-import {getAuth,GoogleAuthProvider,signInWithPopup} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"
+import {getAuth,GoogleAuthProvider,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"
 
 
 const firebaseConfig = {
