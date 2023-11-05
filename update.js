@@ -22,6 +22,7 @@ function updateUserProfile(user){
     const username = user.displayName;
     const useremail = user.email;
     const userProfilePicture = user.photoURL;
+    console.log(useremail);
 
     document.getElementById("username").textContent = username;
     document.getElementById("useremail").textContent = useremail;
